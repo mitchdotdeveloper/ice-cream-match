@@ -4,7 +4,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .title {
@@ -33,23 +33,20 @@ body {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  align-content: center;
-  height: 80vh;
+  min-height: 80vh;
   width: 100vw;
   background-color: rgba(48, 38, 22, 0.911);
 }
 
 .card {
-  /* position: relative; */
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: baseline;
-  height: 30vh;
-  width: 16vw;
+  height: 300px;
+  width: 200px;
   border-radius: 30px;
-  margin: 3px 3px;
-  /* background-color: rgba(255, 0, 255, 0.568); */
-
+  margin: 3px;
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
@@ -58,8 +55,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30vh;
-  width: 16vw;
+  height: 300px;
+  width: 200px;
   border-radius: 30px;
   background-color: wheat;
   backface-visibility: hidden;
@@ -73,10 +70,10 @@ body {
 }
 
 .card-back img {
-  width: 18vmin;
+  width: 150px;
 }
 .card-face img {
-  width: 10vmin;
+  width: 100px;
 }
 
 .flip-card {
