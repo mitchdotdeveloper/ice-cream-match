@@ -43,12 +43,29 @@ body {
   height: 30vh;
   width: 18vw;
   margin: 1px 1px;
-  background-color: azure;
+  background-color: rgba(255, 0, 255, 0.568);
 }
 
-.card img {
+.card-back, .card-face {
   display: flex;
-  margin: auto;
-  /* width: 40%; */
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  width: 18vw;
+}
+
+.card-back {
+  position: absolute;
+  background-color: rgba(0, 0, 255, 0.5);
+}
+
+.card-face {
+  background-color: rgba(0, 128, 0, 0.555);
+}
+
+.card-face img {
   width: 10vmin;
+}
+.card-back img {
+  width: 18vmin;
 }
