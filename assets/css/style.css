@@ -15,17 +15,50 @@ body {
   width: 100vw;
   font-size: 8vmin;
   font-family: 'Pacifico', cursive;
-  color: mintcream;
+  color: rgb(185, 255, 220);
   background-color: rgb(255, 127, 127);
 }
 
-.score {
+.stats {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-evenly;
   align-items: center;
   height: 10vh;
   width: 100vw;
   background-color: rgb(226, 217, 179);
+}
+
+.leftSide, .rightSide {
+  display: flex;
+  justify-content: center;
+  height: 10vh;
+  width: 50%;
+}
+
+.attempts-remaining, .progress {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  border: 1px solid rgba(48, 38, 22, 0.911);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+  transition: background-color .5s ease-in-out;
+  transform: height width .2s ease0
+}
+
+.circle-fill {
+  background-color: rgb(185, 255, 220);
+}
+.circle-enlarge {
+  height: 40px;
+  width: 40px;
 }
 
 .card-container {
