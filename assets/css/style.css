@@ -13,7 +13,10 @@ body {
   align-items: center;
   height: 10vh;
   width: 100vw;
-  background-color: wheat;
+  font-size: 8vmin;
+  font-family: 'Pacifico', cursive;
+  color: mintcream;
+  background-color: rgb(255, 127, 127);
 }
 
 .score {
@@ -22,7 +25,7 @@ body {
   align-items: center;
   height: 10vh;
   width: 100vw;
-  background-color: firebrick;
+  background-color: rgb(226, 217, 179);
 }
 
 .card-container {
@@ -30,20 +33,25 @@ body {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  align-content: space-around;
+  align-content: center;
   height: 80vh;
   width: 100vw;
-  background-color: aquamarine;
+  background-color: rgba(48, 38, 22, 0.911);
 }
 
 .card {
+  /* position: relative; */
   display: flex;
   justify-content: center;
   align-items: baseline;
   height: 30vh;
-  width: 18vw;
-  margin: 1px 1px;
-  background-color: rgba(255, 0, 255, 0.568);
+  width: 16vw;
+  border-radius: 30px;
+  margin: 3px 3px;
+  /* background-color: rgba(255, 0, 255, 0.568); */
+
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
 
 .card-back, .card-face {
@@ -51,21 +59,26 @@ body {
   justify-content: center;
   align-items: center;
   height: 30vh;
-  width: 18vw;
+  width: 16vw;
+  border-radius: 30px;
+  background-color: wheat;
+  backface-visibility: hidden;
 }
 
 .card-back {
   position: absolute;
-  background-color: rgba(0, 0, 255, 0.5);
 }
-
 .card-face {
-  background-color: rgba(0, 128, 0, 0.555);
+  transform: rotateY(180deg);
 }
 
+.card-back img {
+  width: 18vmin;
+}
 .card-face img {
   width: 10vmin;
 }
-.card-back img {
-  width: 18vmin;
+
+.flip-card {
+  transform: rotateY(180deg);
 }
