@@ -20,12 +20,15 @@ body {
 }
 
 .stats {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: space-evenly; */
   align-items: center;
   height: 10vh;
   width: 100vw;
+  font-size: 4vmin;
+  font-family: 'Pacifico', cursive;
+  color: rgb(185, 255, 220);
   background-color: rgb(226, 217, 179);
 }
 
@@ -44,21 +47,18 @@ body {
 }
 
 .circle {
-  border: 1px solid rgba(48, 38, 22, 0.911);
   border-radius: 50%;
   width: 20px;
   height: 20px;
   margin: 0 10px;
   transition: background-color .5s ease-in-out;
-  transform: height width .2s ease0
+  transform: height width .5s ease-in-out;
 }
 
-.circle-fill {
-  background-color: rgb(185, 255, 220);
-}
 .circle-enlarge {
   height: 40px;
   width: 40px;
+  background-color: rgb(185, 255, 220);
 }
 
 .card-container {
