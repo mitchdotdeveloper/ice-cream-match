@@ -7,6 +7,16 @@ body {
   overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {
+  background: #3fbaa2;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 127, 127, 0.658);
+}
+
 .title {
   display: flex;
   justify-content: center;
@@ -71,7 +81,7 @@ body {
   background-color: rgba(48, 38, 22, 0.911);
 }
 
-.card {
+.card, .flipped, .match {
   display: flex;
   flex: 1;
   justify-content: center;
