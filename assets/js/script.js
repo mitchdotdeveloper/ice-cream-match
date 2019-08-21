@@ -2,11 +2,17 @@ var cardImages = ['assets/images/chocolate-scoop.png', 'assets/images/mint-scoop
                   'assets/images/pistachio-coil.png', 'assets/images/pistachio-scoop.png',
                   'assets/images/strawberry-coil.png', 'assets/images/vanilla-coil-caramel.png'];
 var cards = [];
+var attempts = 0;
+var totalMatches = 6;
+var matches = 0;
 
 
 $(document).ready(initializeApp);
 
 function initializeApp () {
+
+  $('.stats').find('.attempts-remaining').text('Attempts Remaining: ' + attempts);
+
   var deck = cardImages.concat(cardImages);
   shuffle(deck);
   deck.forEach(constructCards);
@@ -16,7 +22,8 @@ function initializeApp () {
     var card = $(event.currentTarget);
 
     if (card.hasClass('flipped') ||
-        card.hasClass('match')) {
+        card.hasClass('match')  ||
+        cards.length === 2) {
       return;
     }
 
@@ -26,11 +33,15 @@ function initializeApp () {
     cards.push(card);
 
     if (cards.length === 2) {
+      $('.stats').find('.attempts-remaining').text('Attempts Remaining: ' + (++attempts));
       if (checkMatch(cards[0], cards[1])) {
         $(cards[0]).removeClass('flipped');
         $(cards[0]).addClass('match');
         $(cards[1]).removeClass('flipped');
         $(cards[1]).addClass('match');
+
+        ++matches;
+        $('.circle:nth-child(' + matches + ')').addClass('circle-enlarge');
 
         cards = [];
       } else {
