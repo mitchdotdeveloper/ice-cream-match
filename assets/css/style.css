@@ -1,1 +1,54 @@
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  width: 100vw;
+  background-color: wheat;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  width: 100vw;
+  background-color: firebrick;
+}
+
+.card-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: space-around;
+  height: 80vh;
+  width: 100vw;
+  background-color: aquamarine;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  height: 30vh;
+  width: 18vw;
+  margin: 1px 1px;
+  background-color: azure;
+}
+
+.card img {
+  display: flex;
+  margin: auto;
+  /* width: 40%; */
+  width: 10vmin;
+}
