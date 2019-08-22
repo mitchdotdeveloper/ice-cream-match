@@ -83,12 +83,12 @@ function checkWin () {
     $(cards[1]).removeClass('flipped');
     $(cards[1]).addClass('match');
 
-    $('.circle:nth-child(' + (++cardMatches) + ')').addClass('circle-fill');
-
+    ++cardMatches;
     cards = [];
 
     setTimeout(checkLoss(), 750);
     if (cardMatches === totalMatches) {
+      $('.circle:nth-child(' + (currentLevel+1) + ')').addClass('circle-fill');
       goToNextLevel();
       showModal();
     }
@@ -116,7 +116,7 @@ function checkLoss () {
 
 function goToNextLevel() {
   if (currentLevel === attemptProgression.length) {
-    $('.modal-message').text('Woah! You actually beat the final Level!!!')
+    $('.modal-message').text('Woah! You Won!!!');
   } else {
     ++currentLevel;
   }
@@ -131,10 +131,14 @@ function showModal() {
 function restart() {
   cardMatches = 0;
   attempts = 0;
+
   $('.modal-message').text('Sweet!!!');
   $('.modal').addClass('hidden');
   $('.stats').find('.attempts').text('Attempts: ' + attempts);
-  $('.circle').removeClass('circle-fill');
+
+  if (currentLevel - 1 === -1) {
+    $('.circle').removeClass('circle-fill');
+  }
   $('.card-container').empty();
 
   constructDeck();
