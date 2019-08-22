@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Matching Game</title>
+  <title>Ice Cream Matching Game</title>
   <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -14,7 +14,7 @@
   <header class="title">Ice Cream Match</header>
   <div class="stats">
     <div class="leftSide">
-      <div class="attempts-remaining">Attempts Remaining: 2</div>
+      <div class="attempts-remaining"></div>
     </div>
     <div class="rightSide">
       <div class="progress">
@@ -32,6 +32,10 @@
       <div class="card-back"></div>
       <div class="card-face"></div>
     </div> -->
+  </div>
+  <div class="win-modal hidden">
+    <p class="win-message"></p>
+    <button>X</button>
   </div>
 </body>
 </html>

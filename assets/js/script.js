@@ -6,57 +6,61 @@ var attempts = 0;
 var totalMatches = 6;
 var matches = 0;
 
-
 $(document).ready(initializeApp);
 
 function initializeApp () {
-
+  $('.win-message').text('Congrats!!!');
   $('.stats').find('.attempts-remaining').text('Attempts Remaining: ' + attempts);
 
   var deck = cardImages.concat(cardImages);
   shuffle(deck);
   deck.forEach(constructCards);
 
-  // Event handlers
-  $('.card').on('click', function () {
-    var card = $(event.currentTarget);
+  $('.card').on('click', cardClicked);
+  $('.win-modal button').on('click', function(){
+    $('.win-modal').toggleClass('hidden');
+  })
 
-    if (card.hasClass('flipped') ||
-        card.hasClass('match')  ||
-        cards.length === 2) {
-      return;
-    }
+}
 
-    card.removeClass('card');
-    card.addClass('flip-card flipped');
+function cardClicked () {
+  var card = $(event.currentTarget);
 
-    cards.push(card);
+  if (card.hasClass('flipped') ||
+      card.hasClass('match') ||
+      cards.length === 2) {
+    return;
+  }
 
-    if (cards.length === 2) {
-      $('.stats').find('.attempts-remaining').text('Attempts Remaining: ' + (++attempts));
-      if (checkMatch(cards[0], cards[1])) {
-        $(cards[0]).removeClass('flipped');
-        $(cards[0]).addClass('match');
-        $(cards[1]).removeClass('flipped');
-        $(cards[1]).addClass('match');
+  card.addClass('flip-card flipped');
+  cards.push(card);
 
-        ++matches;
-        $('.circle:nth-child(' + matches + ')').addClass('circle-enlarge');
+  if (cards.length === 2) {
+    $('.stats').find('.attempts-remaining').text('Attempts Remaining: ' + (++attempts));
+    if (checkMatch(cards[0], cards[1])) {
+      $(cards[0]).removeClass('flipped');
+      $(cards[0]).addClass('match');
+      $(cards[1]).removeClass('flipped');
+      $(cards[1]).addClass('match');
+
+      ++matches;
+      $('.circle:nth-child(' + matches + ')').addClass('circle-enlarge');
+
+      cards = [];
+      if (matches === totalMatches) {
+        setTimeout(function(){
+          $('.win-modal').toggleClass('hidden');
+        }, 500);
+      }
+    } else {
+      setTimeout(function () {
+        $(cards[0]).removeClass('flip-card flipped');
+        $(cards[1]).removeClass('flip-card flipped');
 
         cards = [];
-      } else {
-        setTimeout(function(){
-          $(cards[0]).removeClass('flip-card flipped');
-          $(cards[0]).addClass('card');
-          $(cards[1]).removeClass('flip-card flipped');
-          $(cards[1]).addClass('card');
-
-          cards = [];
-        }, 1000);
-      }
-
+      }, 1000);
     }
-  });
+  }
 }
 
 function shuffle(array) {
