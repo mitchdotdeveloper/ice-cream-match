@@ -76,13 +76,6 @@ function checkMatch (card1, card2) {
   return card1 === card2;
 }
 
-function goToNextLevel() {
-  if (currentLevel === attemptProgression.length) {
-    alert('that is the end')
-  }
-  currentLevel++;
-}
-
 function checkWin () {
   if (checkMatch(cards[0], cards[1])) {
     $(cards[0]).removeClass('flipped');
@@ -97,9 +90,7 @@ function checkWin () {
     setTimeout(checkLoss(), 750);
     if (cardMatches === totalMatches) {
       goToNextLevel();
-      setTimeout(function () {
-        $('.modal').removeClass('hidden');
-      }, 500);
+      showModal();
     }
 
   } else {
@@ -117,15 +108,30 @@ function checkLoss () {
     if (attempts === attemptProgression[currentLevel - 1] &&
       !(cardMatches === totalMatches)) {
       currentLevel = 0;
-      $('.modal-message').text('You Suck!!!');
-      $('.modal').removeClass('hidden');
+      $('.modal-message').text('You Lose!!!');
+      showModal();
     }
   }
+}
+
+function goToNextLevel() {
+  if (currentLevel === attemptProgression.length) {
+    $('.modal-message').text('Woah! You actually beat the final Level!!!')
+  } else {
+    ++currentLevel;
+  }
+}
+
+function showModal() {
+  setTimeout(function () {
+    $('.modal').removeClass('hidden');
+  }, 500);
 }
 
 function restart() {
   cardMatches = 0;
   attempts = 0;
+  $('.modal-message').text('Sweet!!!');
   $('.modal').addClass('hidden');
   $('.stats').find('.attempts').text('Attempts: ' + attempts);
   $('.circle').removeClass('circle-fill');
