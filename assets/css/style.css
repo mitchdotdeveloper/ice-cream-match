@@ -56,7 +56,6 @@ body {
   height: 40px;
   width: 40px;
   background-color: rgb(155, 180, 98);
-  /* rgb(185, 255, 220); */
 }
 
 .card-container {
@@ -129,7 +128,6 @@ body {
 .win-modal {
   border: 30px solid rgb(152, 200, 164);
   background-color: rgb(173,198,115);
-  /* rgb(255, 127, 127); */
 }
 
 .win-message, .win-modal button {
