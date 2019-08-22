@@ -21,13 +21,11 @@ body {
   font-size: 8vmin;
   justify-content: center;
   background-color: rgb(240, 134, 142);
-  /* rgb(255, 127, 127); */
 }
 
 .stats {
   font-size: 4vmin;
   background-color: rgb(248, 220, 146);
-  /* rgb(226, 217, 179); */
 }
 
 .leftSide, .rightSide {
@@ -37,7 +35,7 @@ body {
   width: 50%;
 }
 
-.attempts-remaining, .progress {
+.attempts, .progress {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -57,7 +55,8 @@ body {
 .circle-fill {
   height: 40px;
   width: 40px;
-  background-color: rgb(185, 255, 220);
+  background-color: rgb(155, 180, 98);
+  /* rgb(185, 255, 220); */
 }
 
 .card-container {
@@ -68,7 +67,6 @@ body {
   min-height: 80vh;
   width: 100vw;
   background-color: rgb(115, 70, 61);
-  /* rgba(48, 38, 22, 0.911); */
 }
 
 .card, .flipped, .match {
@@ -129,12 +127,13 @@ body {
 }
 
 .win-modal {
-  border: 30px solid rgba(48, 38, 22, 0.911);
-  background-color: rgb(255, 127, 127);
+  border: 30px solid rgb(152, 200, 164);
+  background-color: rgb(173,198,115);
+  /* rgb(255, 127, 127); */
 }
 
 .win-message, .win-modal button {
-  font-size: 4vmin;
+  font-size: 6vmin;
   font-family: 'Pacifico', cursive;
   text-align: center;
 }
@@ -145,6 +144,7 @@ body {
   height: 30px;
   width:  50px;
   background-color: wheat;
+  border: none;
   outline: none;
 }
 

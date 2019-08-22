@@ -1,3 +1,5 @@
+$(document).ready(initializeApp);
+
 var cardImages = ['assets/images/chocolate-scoop.png', 'assets/images/mint-scoop.png',
                   'assets/images/pistachio-coil.png', 'assets/images/pistachio-scoop.png',
                   'assets/images/strawberry-coil.png', 'assets/images/vanilla-coil-caramel.png'];
@@ -6,10 +8,8 @@ var attempts = 0;
 var totalMatches = 6;
 var matches = 0;
 
-$(document).ready(initializeApp);
-
 function initializeApp () {
-  $('.stats').find('.attempts-remaining').text('Attempts Remaining: ' + attempts);
+  $('.stats').find('.attempts').text('Attempts: ' + attempts);
 
   constructDeck();
   eventHandlers();
@@ -27,13 +27,13 @@ function cardClicked () {
       card.hasClass('match')   ||
       cards.length === 2) {
     return;
-  }
+  }''
 
   card.addClass('flip-card flipped');
   cards.push(card);
 
   if (cards.length === 2) {
-    $('.stats').find('.attempts-remaining').text('Attempts Remaining: ' + (++attempts));
+    $('.stats').find('.attempts').text('Attempts: ' + (++attempts));
     if (checkMatch(cards[0], cards[1])) {
       $(cards[0]).removeClass('flipped');
       $(cards[0]).addClass('match');
@@ -100,7 +100,7 @@ function restart () {
   matches = 0;
   attempts = 0;
   $('.win-modal').addClass('hidden');
-  $('.stats').find('.attempts-remaining').text('Attempts Remaining: ' + attempts);
+  $('.stats').find('.attempts').text('Attempts: ' + attempts);
   $('.circle').removeClass('circle-fill');
   $('.card-container').empty();
 
