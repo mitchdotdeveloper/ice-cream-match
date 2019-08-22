@@ -19,14 +19,7 @@ function initializeApp () {
 
 function eventHandlers () {
   $('.card').on('click', cardClicked);
-  $('.win-modal button').on('click', function(){
-    restart();
-    // if (currentLevel < 2) {
-    //   goToNextLevel();
-    // } else {
-    //   currentLevel = 0;
-    // }
-  });
+  $('.modal button').on('click', restart);
 }
 
 function cardClicked () {
@@ -43,71 +36,8 @@ function cardClicked () {
 
   if (cards.length === 2) {
     $('.stats').find('.attempts').text('Attempts: ' + (++attempts));
-
-    // if (currentLevel) {
-    //   if (attempts === attemptProgression[currentLevel - 1] &&
-    //     !(cardMatches === totalMatches)) {
-    //     alert('you lose');
-    //     currentLevel = 0;
-    //     restart();
-    //   }
-    // }
-
     checkWin();
-
-    // if (checkMatch(cards[0], cards[1])) {
-    //   $(cards[0]).removeClass('flipped');
-    //   $(cards[0]).addClass('match');
-    //   $(cards[1]).removeClass('flipped');
-    //   $(cards[1]).addClass('match');
-
-    //   $('.circle:nth-child(' + (++cardMatches) + ')').addClass('circle-fill');
-
-    //   cards = [];
-
-    //   // setTimeout(function(){
-    //   //   if (currentLevel) {
-    //   //     if (attempts === attemptProgression[currentLevel - 1] &&
-    //   //       !(cardMatches === totalMatches)) {
-    //   //       alert('you lose match');
-    //   //       currentLevel = 0;
-    //   //       restart();
-    //   //     }
-    //   //   }
-    //   // }, 750);
-
-    //   if (cardMatches === totalMatches) {
-    //     goToNextLevel();
-    //     setTimeout(function(){
-    //       $('.win-modal').removeClass('hidden');
-    //     }, 500);
-    //   }
-    // } else {
-    //   setTimeout(function(){
-    //     if (currentLevel) {
-    //       if (attempts === attemptProgression[currentLevel - 1] &&
-    //         !(cardMatches === totalMatches)) {
-    //         alert('you lose match');
-    //         currentLevel = 0;
-    //         restart();
-    //       }
-    //     }
-    //   }, 750);
-
-    //   setTimeout(function () {
-    //     $(cards[0]).removeClass('flip-card flipped');
-    //     $(cards[1]).removeClass('flip-card flipped');
-
-    //     cards = [];
-    //   }, 1000);
-    // }
   }
-}
-function goToNextLevel(){
-  if(currentLevel === attemptProgression.length){
-    alert('that is the end')
-  }
-  currentLevel++;
 }
 
 function shuffle(array) {
@@ -146,16 +76,11 @@ function checkMatch (card1, card2) {
   return card1 === card2;
 }
 
-function restart () {
-  cardMatches = 0;
-  attempts = 0;
-  $('.win-modal').addClass('hidden');
-  $('.stats').find('.attempts').text('Attempts: ' + attempts);
-  $('.circle').removeClass('circle-fill');
-  $('.card-container').empty();
-
-  constructDeck();
-  eventHandlers();
+function goToNextLevel() {
+  if (currentLevel === attemptProgression.length) {
+    alert('that is the end')
+  }
+  currentLevel++;
 }
 
 function checkWin () {
@@ -169,40 +94,43 @@ function checkWin () {
 
     cards = [];
 
-    setTimeout(function(){
-      if (currentLevel) {
-        if (attempts === attemptProgression[currentLevel - 1] &&
-          !(cardMatches === totalMatches)) {
-          alert('you lose match');
-          currentLevel = 0;
-          restart();
-        }
-      }
-    }, 750);
-
+    setTimeout(checkLoss(), 750);
     if (cardMatches === totalMatches) {
       goToNextLevel();
       setTimeout(function () {
-        $('.win-modal').removeClass('hidden');
+        $('.modal').removeClass('hidden');
       }, 500);
     }
+
   } else {
-    setTimeout(function () {
-      if (currentLevel) {
-        if (attempts === attemptProgression[currentLevel - 1] &&
-          !(cardMatches === totalMatches)) {
-          alert('you lose match');
-          currentLevel = 0;
-          restart();
-        }
-      }
-    }, 750);
-
-    setTimeout(function () {
-      $(cards[0]).removeClass('flip-card flipped');
-      $(cards[1]).removeClass('flip-card flipped');
-
-      cards = [];
-    }, 1000);
+      setTimeout(checkLoss(), 750);
+      setTimeout(function () {
+        $(cards[0]).removeClass('flip-card flipped');
+        $(cards[1]).removeClass('flip-card flipped');
+        cards = [];
+      }, 500);
   }
+}
+
+function checkLoss () {
+  if (currentLevel) {
+    if (attempts === attemptProgression[currentLevel - 1] &&
+      !(cardMatches === totalMatches)) {
+      currentLevel = 0;
+      $('.modal-message').text('You Suck!!!');
+      $('.modal').removeClass('hidden');
+    }
+  }
+}
+
+function restart() {
+  cardMatches = 0;
+  attempts = 0;
+  $('.modal').addClass('hidden');
+  $('.stats').find('.attempts').text('Attempts: ' + attempts);
+  $('.circle').removeClass('circle-fill');
+  $('.card-container').empty();
+
+  constructDeck();
+  eventHandlers();
 }

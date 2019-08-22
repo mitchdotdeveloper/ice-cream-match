@@ -114,7 +114,7 @@ body {
   transform: rotateY(180deg);
 }
 
-.win-modal, .win-message, .win-modal button {
+.modal, .modal-message, .modal button {
   position: absolute;
   z-index: 1;
   height: 40%;
@@ -125,22 +125,22 @@ body {
   border-radius: 30px;
 }
 
-.win-modal {
+.modal {
   border: 30px solid rgb(152, 200, 164);
   background-color: rgb(173,198,115);
 }
 
-.win-message, .win-modal button {
+.modal-message, .modal button {
   font-size: 6vmin;
   font-family: 'Pacifico', cursive;
   text-align: center;
 }
 
-.win-message {
+.modal-message {
   top: 40%;
 }
 
-.win-modal button {
+.modal button {
   font-size: 1em;
   top: 90%;
   height: 30px;
