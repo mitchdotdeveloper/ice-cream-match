@@ -17,7 +17,6 @@ function initializeApp () {
 
 function eventHandlers () {
   $('.card').on('click', cardClicked);
-
   $('.win-modal button').on('click', restart);
 }
 
@@ -25,7 +24,7 @@ function cardClicked () {
   var card = $(event.currentTarget);
 
   if (card.hasClass('flipped') ||
-      card.hasClass('match') ||
+      card.hasClass('match')   ||
       cards.length === 2) {
     return;
   }
