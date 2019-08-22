@@ -138,6 +138,10 @@ body {
   text-align: center;
 }
 
+.win-message {
+  top: 40%;
+}
+
 .win-modal button {
   font-size: 1em;
   top: 90%;
