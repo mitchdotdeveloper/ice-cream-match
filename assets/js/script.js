@@ -9,18 +9,16 @@ var matches = 0;
 $(document).ready(initializeApp);
 
 function initializeApp () {
-  $('.win-message').text('Congrats!!!');
   $('.stats').find('.attempts-remaining').text('Attempts Remaining: ' + attempts);
 
-  var deck = cardImages.concat(cardImages);
-  shuffle(deck);
-  deck.forEach(constructCards);
+  constructDeck();
+  eventHandlers();
+}
 
+function eventHandlers () {
   $('.card').on('click', cardClicked);
-  $('.win-modal button').on('click', function(){
-    $('.win-modal').toggleClass('hidden');
-  })
 
+  $('.win-modal button').on('click', restart);
 }
 
 function cardClicked () {
@@ -44,12 +42,12 @@ function cardClicked () {
       $(cards[1]).addClass('match');
 
       ++matches;
-      $('.circle:nth-child(' + matches + ')').addClass('circle-enlarge');
+      $('.circle:nth-child(' + matches + ')').addClass('circle-fill');
 
       cards = [];
       if (matches === totalMatches) {
         setTimeout(function(){
-          $('.win-modal').toggleClass('hidden');
+          $('.win-modal').removeClass('hidden');
         }, 500);
       }
     } else {
@@ -68,6 +66,12 @@ function shuffle(array) {
     var randomIndex = Math.floor(Math.random() * (index + 1));
     [array[index], array[randomIndex]] = [array[randomIndex], array[index]];
   }
+}
+
+function constructDeck () {
+  var deck = cardImages.concat(cardImages);
+  shuffle(deck);
+  deck.forEach(constructCards);
 }
 
 function constructCards(cardSrc) {
@@ -91,4 +95,16 @@ function checkMatch (card1, card2) {
   card2 = $(card2).attr('src');
 
   return card1 === card2;
+}
+
+function restart () {
+  matches = 0;
+  attempts = 0;
+  $('.win-modal').addClass('hidden');
+  $('.stats').find('.attempts-remaining').text('Attempts Remaining: ' + attempts);
+  $('.circle').removeClass('circle-fill');
+  $('.card-container').empty();
+
+  constructDeck();
+  eventHandlers();
 }
