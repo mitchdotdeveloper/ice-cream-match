@@ -156,7 +156,7 @@ function restart() {
 }
 
 function levelTransition () {
-  $('body').addClass('overflow');
+  $('body').addClass('overflow-y');
   $('.card-container').addClass('slide-hide');
   $('.stats').addClass('slide');
   $('.title').addClass('slide enlarge-text');
@@ -170,7 +170,7 @@ function levelTransition () {
     $('.card-container').removeClass('slide-hide');
 
     setTimeout(function () {
-      $('body').removeClass('overflow');
+      $('body').removeClass('overflow-y');
     }, 750);
   }, 750);
 }

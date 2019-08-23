@@ -166,7 +166,7 @@ body {
   height: 0;
 }
 
-.overflow {
+.overflow-y {
   overflow-y: hidden;
 }
 
