@@ -15,7 +15,7 @@ body {
   font-family: 'Pacifico', cursive;
   color: rgb(185, 255, 220);
   text-shadow: 5px 5px 4px rgba(48, 38, 22, 0.911);
-  transition: height .5s;
+  transition: height .5s, font-size .5s;
 }
 
 .title {
@@ -46,8 +46,8 @@ body {
 .circle {
   border: 1px solid white;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 5px;
+  height: 5px;
   margin: 0 50px;
   transition: background-color .5s ease-in-out;
   transform: height width .5s ease-in-out;
@@ -168,4 +168,8 @@ body {
 
 .overflow {
   overflow-y: hidden;
+}
+
+.enlarge-text {
+  font-size: 15vmin;
 }

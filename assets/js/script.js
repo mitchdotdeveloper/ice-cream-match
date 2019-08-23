@@ -12,7 +12,7 @@ var cards = [];
 var attempts = 0;
 var totalMatches = 6;
 var cardMatches = 0;
-var attemptProgression = [11, 6];
+var attemptProgression = [11, 7];
 var currentLevel = 0;
 
 function initializeApp () {
@@ -155,19 +155,16 @@ function restart() {
 }
 
 function levelTransition () {
-
   $('body').addClass('overflow');
-
   $('.card-container').addClass('slide-hide');
   $('.stats').addClass('slide');
-  $('.title').addClass('slide');
+  $('.title').addClass('slide enlarge-text');
 
   constructDeck();
   eventHandlers();
 
   setTimeout(function () {
-    // $('body').addClass('overflow');
-    $('.title').removeClass('slide');
+    $('.title').removeClass('slide enlarge-text');
     $('.stats').removeClass('slide');
     $('.card-container').removeClass('slide-hide');
 
