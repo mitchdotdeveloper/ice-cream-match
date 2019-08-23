@@ -151,6 +151,24 @@ function restart() {
   }
   $('.card-container').empty();
 
+  levelTransition();
+}
+
+function levelTransition () {
+
+  $('.card-container').addClass('hidden');
+  $('.stats').addClass('slide');
+
   constructDeck();
   eventHandlers();
+
+  setTimeout(function () {
+    $('body').toggleClass('overflow');
+    $('.stats').removeClass('slide');
+    $('.card-container').removeClass('hidden');
+
+    setTimeout(function () {
+      $('body').toggleClass('overflow');
+    }, 750);
+  }, 750);
 }
