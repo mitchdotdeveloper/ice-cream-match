@@ -55,6 +55,8 @@ function shuffle(array) {
 function constructDeck () {
   var deck = cardImages;
 
+  shuffle(deck);
+
   deck = deck.slice(8);
   deck = deck.concat(deck);
   shuffle(deck);
