@@ -127,6 +127,7 @@ function checkLoss () {
 function goToNextLevel() {
   if (currentLevel === attemptProgression.length) {
     $('.modal-message').text('Woah! You Won!!!');
+    currentLevel = 0;
   } else {
     ++currentLevel;
   }
