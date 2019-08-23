@@ -1,8 +1,13 @@
 $(document).ready(initializeApp);
 
-var cardImages = ['assets/images/chocolate-scoop.png', 'assets/images/mint-scoop.png',
-                  'assets/images/pistachio-coil.png', 'assets/images/pistachio-scoop.png',
-                  'assets/images/strawberry-coil.png', 'assets/images/vanilla-coil-caramel.png'];
+var cardImages = ['assets/images/chocolate-coil-chocolatechips.png', 'assets/images/chocolate-scoop-sprinkles.png',
+                  'assets/images/chocolate-scoop.png', 'assets/images/coffee-coil-chocolate.png',
+                  'assets/images/coffee-coil.png', 'assets/images/mint-coil-chocolatechips.png',
+                  'assets/images/mint-scoop.png', 'assets/images/pistachio-coil.png',
+                  'assets/images/pistachio-scoop.png', 'assets/images/strawberry-coil-strawberry.png',
+                  'assets/images/strawberry-coil.png', 'assets/images/strawberry-scoop-chocolatechips.png',
+                  'assets/images/vanilla-coil-caramel.png', 'assets/images/vanilla-coil-chocolate.png'];
+
 var cards = [];
 var attempts = 0;
 var totalMatches = 6;
@@ -48,7 +53,10 @@ function shuffle(array) {
 }
 
 function constructDeck () {
-  var deck = cardImages.concat(cardImages);
+  var deck = cardImages;
+
+  deck = deck.slice(8);
+  deck = deck.concat(deck);
   shuffle(deck);
   deck.forEach(constructCards);
 }
