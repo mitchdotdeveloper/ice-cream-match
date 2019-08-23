@@ -135,7 +135,8 @@ function goToNextLevel() {
 
 function showModal() {
   setTimeout(function () {
-    $('.modal').removeClass('hidden');
+    $('.modal, .modal-overlay').removeClass('hidden');
+
   }, 500);
 }
 
@@ -144,7 +145,7 @@ function restart() {
   attempts = 0;
 
   $('.modal-message').text('Sweet!!!');
-  $('.modal').addClass('hidden');
+  $('.modal, .modal-overlay').addClass('hidden');
   $('.stats').find('.attempts').text('Attempts: ' + attempts);
 
   if (currentLevel - 1 === -1) {
