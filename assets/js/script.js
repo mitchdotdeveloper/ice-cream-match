@@ -156,19 +156,23 @@ function restart() {
 
 function levelTransition () {
 
-  $('.card-container').addClass('hidden');
+  $('body').addClass('overflow');
+
+  $('.card-container').addClass('slide-hide');
   $('.stats').addClass('slide');
+  $('.title').addClass('slide');
 
   constructDeck();
   eventHandlers();
 
   setTimeout(function () {
-    $('body').toggleClass('overflow');
+    // $('body').addClass('overflow');
+    $('.title').removeClass('slide');
     $('.stats').removeClass('slide');
-    $('.card-container').removeClass('hidden');
+    $('.card-container').removeClass('slide-hide');
 
     setTimeout(function () {
-      $('body').toggleClass('overflow');
+      $('body').removeClass('overflow');
     }, 750);
   }, 750);
 }

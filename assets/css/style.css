@@ -15,6 +15,7 @@ body {
   font-family: 'Pacifico', cursive;
   color: rgb(185, 255, 220);
   text-shadow: 5px 5px 4px rgba(48, 38, 22, 0.911);
+  transition: height .5s;
 }
 
 .title {
@@ -26,10 +27,6 @@ body {
 .stats {
   font-size: 4vmin;
   background-color: rgb(248, 220, 146);
-
-
-  transition: height .5s;
-
 }
 
 .leftSide, .rightSide {
@@ -51,7 +48,7 @@ body {
   border-radius: 50%;
   width: 20px;
   height: 20px;
-  margin: 0 10px;
+  margin: 0 50px;
   transition: background-color .5s ease-in-out;
   transform: height width .5s ease-in-out;
 }
@@ -70,8 +67,6 @@ body {
   min-height: 80vh;
   width: 100vw;
   background-color: rgb(115, 70, 61);
-
-
   transition: height .5s;
 }
 
@@ -104,6 +99,7 @@ body {
 }
 .card-face {
   transform: rotateY(180deg);
+  background-color: rgb(248, 220, 146);
 }
 
 .card-back img {
@@ -163,7 +159,11 @@ body {
 }
 
 .slide {
-  height: 90vh;
+  height: 50vh;
+}
+
+.slide-hide {
+  height: 0;
 }
 
 .overflow {
