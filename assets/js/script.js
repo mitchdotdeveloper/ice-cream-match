@@ -16,14 +16,36 @@ var attemptProgression = [11, 7];
 var currentLevel = 0;
 
 function initializeApp () {
+  startScreen();
   $('.stats').find('.attempts').text('Attempts: ' + attempts);
 
   constructDeck();
   eventHandlers();
 }
 
+function startScreen () {
+
+  $('body').addClass('overflow-y');
+
+  if ($('.start').hasClass('hidden')) {
+    $('.title, .stats').addClass('home');
+    $('.stats').addClass('flex-center');
+    $('.start').removeClass('hidden');
+    $('.leftSide, .rightSide, .card-container').addClass('hidden');
+  } else {
+    $('.title, .stats').toggleClass('home');
+    $('.stats').toggleClass('flex-center');
+    $('.start, .leftSide, .rightSide, .card-container').toggleClass('hidden');
+  }
+
+  setTimeout(function(){
+    $('body').removeClass('overflow-y');
+  }, 500);
+}
+
 function eventHandlers () {
   $('.card').on('click', cardClicked);
+  $('.start').on('click', startScreen);
   $('.modal button').on('click', restart);
 }
 
@@ -148,12 +170,22 @@ function restart() {
   $('.modal, .modal-overlay').addClass('hidden');
   $('.stats').find('.attempts').text('Attempts: ' + attempts);
 
-  if (currentLevel - 1 === -1) {
-    $('.circle').removeClass('circle-fill');
-  }
   $('.card-container').empty();
 
-  levelTransition();
+  if (currentLevel - 1 === -1) {
+    $('.circle').removeClass('circle-fill');
+    startScreen();
+  } else {
+    levelTransition();
+  }
+
+
+  // if (currentLevel - 1 === -1) {
+  //   $('.circle').removeClass('circle-fill');
+  // }
+  // $('.card-container').empty();
+
+  // levelTransition();
 }
 
 function levelTransition () {
