@@ -17,7 +17,12 @@ var currentLevel = 0;
 var gameStats = {
   attempts: 0,
   matches: 0,
-  accuracy: 0
+  accuracy: 0,
+  toString: function() {
+    return 'Attempts: ' + this.attempts +
+           '<br>Matches: ' + this.matches +
+           '<br>Accuracy: ' + this.accuracy;
+  }
 };
 
 var levelMessage = 'Sweet! Next Level!!!';
@@ -137,7 +142,6 @@ function checkWin () {
   }
 
   gameStats.accuracy = (gameStats.matches / gameStats.attempts * 100).toFixed(2) + '%';
-  console.log(gameStats);
 }
 
 function checkResult () {
@@ -145,7 +149,7 @@ function checkResult () {
     if (attempts === attemptProgression[currentLevel - 1] &&
       !(cardMatches === totalMatches)) {
       currentLevel = 0;
-      showModal(loseMessage);
+      showStats(loseMessage);
     }
   }
 }
@@ -153,7 +157,7 @@ function checkResult () {
 function goToNextLevel() {
   if (currentLevel === attemptProgression.length) {
     currentLevel = 0;
-    showModal(winMessage);
+    showStats(winMessage);
   } else {
     ++currentLevel;
     showModal(levelMessage);
@@ -165,6 +169,18 @@ function showModal(message) {
     $('.modal-message').text(message);
     $('.modal, .modal-overlay').removeClass('hidden');
   }, 500);
+}
+
+function showStats(message) {
+  // setTimeout(function () {
+  //   $('.modal-message').text(message);
+  //   $('.modal, .modal-overlay').removeClass('hidden');
+  // }, 500);
+  showModal(message);
+  setTimeout(function () {
+    $('.modal-message').addClass('result-message');
+    $('.modal-message').html(gameStats.toString());
+  }, 1500);
 }
 
 function restart() {

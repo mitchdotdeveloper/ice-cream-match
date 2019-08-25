@@ -152,7 +152,7 @@ body {
   background-color: rgb(173,198,115);
 }
 
-.modal-message, .modal button {
+.modal-message, .result-message, .modal button {
   font-size: 6vmin;
   font-family: 'Pacifico', cursive;
   text-align: center;
@@ -160,6 +160,11 @@ body {
 
 .modal-message {
   top: 40%;
+}
+
+.result-message {
+  top: 30%;
+  font-size: 4.5vmin;
 }
 
 .modal button {
