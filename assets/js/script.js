@@ -65,6 +65,7 @@ function cardClicked () {
 
   if (cards.length === 2) {
     $('.stats').find('.attempts').text('Attempts: ' + (++attempts));
+    ++gameStats.attempts;
     checkWin();
   }
 }
@@ -118,14 +119,13 @@ function checkWin () {
     $(cards[1]).addClass('match');
 
     ++cardMatches;
+    ++gameStats.matches;
     cards = [];
 
     setTimeout(checkResult, 500);
     if (cardMatches === totalMatches) {
       $('.circle:nth-child(' + (currentLevel + 1) + ')').addClass('circle-fill');
       goToNextLevel();
-      // showModal('.level-result');
-      // showModal(winMessage);
     }
   } else {
     setTimeout(checkResult, 500);
@@ -135,6 +135,9 @@ function checkWin () {
       cards = [];
     }, 500);
   }
+
+  gameStats.accuracy = (gameStats.matches / gameStats.attempts * 100).toFixed(2) + '%';
+  console.log(gameStats);
 }
 
 function checkResult () {
@@ -142,8 +145,6 @@ function checkResult () {
     if (attempts === attemptProgression[currentLevel - 1] &&
       !(cardMatches === totalMatches)) {
       currentLevel = 0;
-      // $('.modal-message.level').text('You Lose!!!');
-      // showModal('.level-result');
       showModal(loseMessage);
     }
   }
@@ -151,9 +152,8 @@ function checkResult () {
 
 function goToNextLevel() {
   if (currentLevel === attemptProgression.length) {
-    // $('.modal-message').text('Woah! You Won!!!');
-    showModal(winMessage);
     currentLevel = 0;
+    showModal(winMessage);
   } else {
     ++currentLevel;
     showModal(levelMessage);
@@ -171,7 +171,6 @@ function restart() {
   cardMatches = 0;
   attempts = 0;
 
-  $('.modal-message.level').text('Sweet!!! Next Level!!!');
   $('.modal, .modal-overlay').addClass('hidden');
   $('.stats').find('.attempts').text('Attempts: ' + attempts);
 
