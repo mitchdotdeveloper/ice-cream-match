@@ -63,7 +63,6 @@ body {
 }
 
 .circle {
-  border: 1px solid white;
   border-radius: 50%;
   width: 5px;
   height: 5px;
@@ -75,6 +74,7 @@ body {
 .circle-fill {
   height: 40px;
   width: 40px;
+  border: 1px solid white;
   background-color: rgb(155, 180, 98);
 }
 

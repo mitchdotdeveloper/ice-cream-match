@@ -12,7 +12,7 @@ var cards = [];
 var attempts = 0;
 var totalMatches = 6;
 var cardMatches = 0;
-var attemptProgression = [11, 7];
+var attemptProgression = [11, 8];
 var currentLevel = 0;
 var gameStats = {
   attempts: 0,
@@ -25,7 +25,7 @@ var gameStats = {
   }
 };
 
-var levelMessage = 'Sweet! Next Level!!!';
+var levelMessage = 'Sweet! On to level ';
 var winMessage = 'Woah! You actually won!!!';
 var loseMessage = 'Bummer! You lost!!!';
 
@@ -33,7 +33,7 @@ function initializeApp () {
   startScreen();
 
   $('.stats').find('.attempts').text('Attempts: ' + attempts);
-  $('.modal-message').text(levelMessage);
+  $('.modal-message').text(levelMessage + (currentLevel + 1) + '!!!');
 
   constructDeck();
   eventHandlers();
@@ -160,7 +160,7 @@ function goToNextLevel() {
     showStats(winMessage);
   } else {
     ++currentLevel;
-    showModal(levelMessage);
+    showModal(levelMessage + (currentLevel + 1) + '!!!');
   }
 }
 
@@ -172,10 +172,6 @@ function showModal(message) {
 }
 
 function showStats(message) {
-  // setTimeout(function () {
-  //   $('.modal-message').text(message);
-  //   $('.modal, .modal-overlay').removeClass('hidden');
-  // }, 500);
   showModal(message);
   setTimeout(function () {
     $('.modal-message').addClass('result-message');
@@ -194,6 +190,9 @@ function restart() {
 
   if (currentLevel - 1 === -1) {
     $('.circle').removeClass('circle-fill');
+    gameStats.attempts = 0;
+    gameStats.matches = 0;
+    gameStats.accuracy = 0;
   }
   levelTransition();
 }
