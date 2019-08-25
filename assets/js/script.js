@@ -14,10 +14,21 @@ var totalMatches = 6;
 var cardMatches = 0;
 var attemptProgression = [11, 7];
 var currentLevel = 0;
+var gameStats = {
+  attempts: 0,
+  matches: 0,
+  accuracy: 0
+};
+
+var levelMessage = 'Sweet! Next Level!!!';
+var winMessage = 'Woah! You actually won!!!';
+var loseMessage = 'Bummer! You lost!!!';
 
 function initializeApp () {
   startScreen();
+
   $('.stats').find('.attempts').text('Attempts: ' + attempts);
+  $('.modal-message').text(levelMessage);
 
   constructDeck();
   eventHandlers();
@@ -37,7 +48,7 @@ function startScreen () {
 function eventHandlers () {
   $('.card').on('click', cardClicked);
   $('.start').on('click', startScreen);
-  $('.modal.level-result button').on('click', restart);
+  $('.modal button').on('click', restart);
 }
 
 function cardClicked () {
@@ -113,7 +124,8 @@ function checkWin () {
     if (cardMatches === totalMatches) {
       $('.circle:nth-child(' + (currentLevel + 1) + ')').addClass('circle-fill');
       goToNextLevel();
-      showModal('.level-result');
+      // showModal('.level-result');
+      // showModal(winMessage);
     }
   } else {
     setTimeout(checkResult, 500);
@@ -130,24 +142,28 @@ function checkResult () {
     if (attempts === attemptProgression[currentLevel - 1] &&
       !(cardMatches === totalMatches)) {
       currentLevel = 0;
-      $('.modal-message.level').text('You Lose!!!');
-      showModal('.level-result');
+      // $('.modal-message.level').text('You Lose!!!');
+      // showModal('.level-result');
+      showModal(loseMessage);
     }
   }
 }
 
 function goToNextLevel() {
   if (currentLevel === attemptProgression.length) {
-    $('.modal-message.level').text('Woah! You Won!!!');
+    // $('.modal-message').text('Woah! You Won!!!');
+    showModal(winMessage);
     currentLevel = 0;
   } else {
     ++currentLevel;
+    showModal(levelMessage);
   }
 }
 
-function showModal(modalClass) {
+function showModal(message) {
   setTimeout(function () {
-    $('.modal' + modalClass + ', .modal-overlay').removeClass('hidden');
+    $('.modal-message').text(message);
+    $('.modal, .modal-overlay').removeClass('hidden');
   }, 500);
 }
 
