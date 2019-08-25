@@ -24,19 +24,10 @@ function initializeApp () {
 }
 
 function startScreen () {
-
   $('body').addClass('overflow-y');
-
-  if ($('.start').hasClass('hidden')) {
-    $('.title, .stats').addClass('home');
-    $('.stats').addClass('flex-center');
-    $('.start').removeClass('hidden');
-    $('.leftSide, .rightSide, .card-container').addClass('hidden');
-  } else {
-    $('.title, .stats').toggleClass('home');
-    $('.stats').toggleClass('flex-center');
-    $('.start, .leftSide, .rightSide, .card-container').toggleClass('hidden');
-  }
+  $('.title, .stats').toggleClass('home');
+  $('.stats').toggleClass('flex-center');
+  $('.start, .leftSide, .rightSide, .card-container').toggleClass('hidden');
 
   setTimeout(function(){
     $('body').removeClass('overflow-y');
@@ -46,7 +37,7 @@ function startScreen () {
 function eventHandlers () {
   $('.card').on('click', cardClicked);
   $('.start').on('click', startScreen);
-  $('.modal button').on('click', restart);
+  $('.modal.level-result button').on('click', restart);
 }
 
 function cardClicked () {
@@ -118,47 +109,45 @@ function checkWin () {
     ++cardMatches;
     cards = [];
 
-    setTimeout(checkLoss(), 750);
+    setTimeout(checkResult, 500);
     if (cardMatches === totalMatches) {
-      $('.circle:nth-child(' + (currentLevel+1) + ')').addClass('circle-fill');
+      $('.circle:nth-child(' + (currentLevel + 1) + ')').addClass('circle-fill');
       goToNextLevel();
-      showModal();
+      showModal('.level-result');
     }
-
   } else {
-      setTimeout(checkLoss(), 750);
-      setTimeout(function () {
-        $(cards[0]).removeClass('flip-card flipped');
-        $(cards[1]).removeClass('flip-card flipped');
-        cards = [];
-      }, 500);
+    setTimeout(checkResult, 500);
+    setTimeout(function(){
+      $(cards[0]).removeClass('flip-card flipped');
+      $(cards[1]).removeClass('flip-card flipped');
+      cards = [];
+    }, 500);
   }
 }
 
-function checkLoss () {
+function checkResult () {
   if (currentLevel) {
     if (attempts === attemptProgression[currentLevel - 1] &&
       !(cardMatches === totalMatches)) {
       currentLevel = 0;
-      $('.modal-message').text('You Lose!!!');
-      showModal();
+      $('.modal-message.level').text('You Lose!!!');
+      showModal('.level-result');
     }
   }
 }
 
 function goToNextLevel() {
   if (currentLevel === attemptProgression.length) {
-    $('.modal-message').text('Woah! You Won!!!');
+    $('.modal-message.level').text('Woah! You Won!!!');
     currentLevel = 0;
   } else {
     ++currentLevel;
   }
 }
 
-function showModal() {
+function showModal(modalClass) {
   setTimeout(function () {
-    $('.modal, .modal-overlay').removeClass('hidden');
-
+    $('.modal' + modalClass + ', .modal-overlay').removeClass('hidden');
   }, 500);
 }
 
@@ -166,7 +155,7 @@ function restart() {
   cardMatches = 0;
   attempts = 0;
 
-  $('.modal-message').text('Sweet!!!');
+  $('.modal-message.level').text('Sweet!!! Next Level!!!');
   $('.modal, .modal-overlay').addClass('hidden');
   $('.stats').find('.attempts').text('Attempts: ' + attempts);
 
@@ -174,23 +163,13 @@ function restart() {
 
   if (currentLevel - 1 === -1) {
     $('.circle').removeClass('circle-fill');
-    startScreen();
-  } else {
-    levelTransition();
   }
-
-
-  // if (currentLevel - 1 === -1) {
-  //   $('.circle').removeClass('circle-fill');
-  // }
-  // $('.card-container').empty();
-
-  // levelTransition();
+  levelTransition();
 }
 
 function levelTransition () {
   $('body').addClass('overflow-y');
-  $('.card-container').addClass('slide-hide');
+  $('.card-container').addClass('hidden');
   $('.stats').addClass('slide');
   $('.title').addClass('slide enlarge-text');
 
@@ -200,8 +179,7 @@ function levelTransition () {
   setTimeout(function () {
     $('.title').removeClass('slide enlarge-text');
     $('.stats').removeClass('slide');
-    $('.card-container').removeClass('slide-hide');
-
+    $('.card-container').removeClass('hidden');
     setTimeout(function () {
       $('body').removeClass('overflow-y');
     }, 750);
