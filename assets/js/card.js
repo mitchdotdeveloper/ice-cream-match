@@ -3,7 +3,6 @@ class Card {
     this.domElement = jQuery;
     this.cardFaceSrc = '';
     this.cardBackSrc = 'assets/images/cardback.png';
-
   }
 
   setCardFace (cardFace) {
