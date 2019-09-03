@@ -76,7 +76,7 @@ class Game {
   }
 
   restart() {
-    this.deck = new Deck().constructDeck();
+    this.deck = new Deck();
     this.currentAttempts = null;
     this.currentMatches = null;
     this.currentLevel = 0;
@@ -84,6 +84,7 @@ class Game {
     this.gameStats.matches = 0;
     this.gameStats.accuracy = 0;
 
+    this.deck.constructDeck();
     this.showStartScreen();
   }
 

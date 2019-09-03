@@ -46,10 +46,10 @@ class Card {
   }
 
   revealCard () {
-    this.domElement.addClass('card-flip flip-card');
+    this.domElement.addClass('card-flip flip');
   }
   hideCard () {
-    this.domElement.removeClass('card-flip flip-card');
+    this.domElement.removeClass('card-flip flip');
   }
   matchCard () {
     this.domElement.addClass('card-match');

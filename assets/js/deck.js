@@ -5,6 +5,7 @@ class Deck {
     this.cardsClicked = [];
 
     this.cardClickHandler = this.cardClickHandler.bind(this);
+    this.checkMatch = this.checkMatch.bind(this);
   }
 
   constructDeck () {
@@ -24,6 +25,7 @@ class Deck {
 
   selectImages () {
     this.images = cardImages;
+    this.shuffleImages();
     this.images = this.images.slice(0, 6);
     this.images = this.images.concat(this.images);
   }
@@ -65,8 +67,7 @@ class Deck {
     card.revealCard();
 
     if (this.cardsClicked.length === 2) {
-      // setTimeout(this.checkMatch, 500);
-      this.checkMatch();
+      setTimeout(this.checkMatch, 500);
     }
   }
 }
