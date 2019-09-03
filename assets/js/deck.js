@@ -43,6 +43,18 @@ class Deck {
     }
   }
 
+  checkMatch () {
+    if (this.cardsClicked[0].getCardFace() === this.cardsClicked[1].getCardFace()) {
+      this.cardsClicked[0].matchCard();
+      this.cardsClicked[1].matchCard();
+    } else {
+      this.cardsClicked[0].hideCard();
+      this.cardsClicked[1].hideCard();
+    }
+
+    this.cardsClicked = [];
+  }
+
   cardClickHandler ( card ) {
     if (card.domElement.hasClass('card-flip') ||
         card.domElement.hasClass('card-match') ||
@@ -53,10 +65,8 @@ class Deck {
     card.revealCard();
 
     if (this.cardsClicked.length === 2) {
-      this.cardsClicked[0].hideCard();
-      this.cardsClicked[1].hideCard();
-      this.cardsClicked = [];
+      // setTimeout(this.checkMatch, 500);
+      this.checkMatch();
     }
   }
-
 }

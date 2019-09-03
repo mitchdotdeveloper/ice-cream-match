@@ -42,7 +42,6 @@ class Card {
   }
 
   handleCardClick () {
-    console.log('card clicked');
     this.callback(this);
   }
 
