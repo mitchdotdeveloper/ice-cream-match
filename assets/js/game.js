@@ -1,6 +1,6 @@
 class Game {
   constructor () {
-    this.deck = new Deck();
+    this.deck = new Deck(this.gameHandler);
     this.currentAttempts = 0;
     this.currentMatches = 0;
     this.totalMatches = 6;
@@ -16,7 +16,9 @@ class Game {
           '<br>Accuracy: ' + this.accuracy;
       }
     };
+
     this.eventHandlers = this.eventHandlers.bind(this);
+    this.gameHandler = this.gameHandler.bind(this);
     this.handleStartClick = this.handleStartClick.bind(this);
     this.restart = this.restart.bind(this);
 
@@ -73,6 +75,10 @@ class Game {
   handleStartClick () {
     $('.stats').find('.attempts').text('Attempts: ' + this.currentAttempts);
     this.hideStartScreen();
+  }
+
+  gameHandler (deck) {
+    console.log('gameHandlerCalled');
   }
 
   restart() {

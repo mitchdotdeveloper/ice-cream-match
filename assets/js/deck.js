@@ -1,9 +1,10 @@
 class Deck {
-  constructor () {
+  constructor (gameHandler) {
     this.deck = [];
     this.images = [];
     this.cardsClicked = [];
 
+    this.gameHandler = gameHandler;
     this.cardClickHandler = this.cardClickHandler.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
   }
@@ -55,6 +56,7 @@ class Deck {
     }
 
     this.cardsClicked = [];
+    this.gameHandler(this);
   }
 
   cardClickHandler ( card ) {
