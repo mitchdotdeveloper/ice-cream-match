@@ -2,6 +2,9 @@ class Deck {
   constructor () {
     this.deck = [];
     this.images = [];
+    this.cardsClicked = [];
+
+    this.cardClickHandler = this.cardClickHandler.bind(this);
   }
 
   constructDeck () {
@@ -10,9 +13,10 @@ class Deck {
     this.shuffleImages();
 
     for (var card = 0; card < this.images.length; ++card) {
-      this.deck.push(new Card());
+      this.deck.push(new Card(this.cardClickHandler));
       this.deck[card].setCardFace(this.images[card]);
-      this.deck[card] = this.deck[card].constructCard();
+      this.deck[card].constructCard();
+      this.deck[card].domElement.on('click', this.deck[card].handleCardClick);
     }
 
     this.appendDeck();
@@ -35,7 +39,23 @@ class Deck {
 
   appendDeck () {
     for (var card = 0; card < this.deck.length; ++card) {
-      $('card-container').append(this.deck[card]);
+      $('.card-container').append(this.deck[card].domElement);
+    }
+  }
+
+  cardClickHandler ( card ) {
+    if (card.domElement.hasClass('card-flip') ||
+        card.domElement.hasClass('card-match') ||
+        this.cardsClicked.length === 2) {
+      return;
+    }
+    this.cardsClicked.push( card );
+    card.revealCard();
+
+    if (this.cardsClicked.length === 2) {
+      this.cardsClicked[0].hideCard();
+      this.cardsClicked[1].hideCard();
+      this.cardsClicked = [];
     }
   }
 

@@ -1,8 +1,11 @@
 class Card {
-  constructor () {
+  constructor (clickHandler) {
     this.domElement = jQuery;
     this.cardFaceSrc = '';
     this.cardBackSrc = 'assets/images/cardback.png';
+    this.callback = clickHandler;
+
+    this.handleCardClick = this.handleCardClick.bind(this);
   }
 
   setCardFace (cardFace) {
@@ -38,14 +41,19 @@ class Card {
     return this.domElement;
   }
 
+  handleCardClick () {
+    console.log('card clicked');
+    this.callback(this);
+  }
+
   revealCard () {
-    this.domElement.removeClass('card').addClass('card-flip flip-card');
+    this.domElement.addClass('card-flip flip-card');
   }
   hideCard () {
-    this.domElement.removeClass('card-flip flip-card').addClass('card');
+    this.domElement.removeClass('card-flip flip-card');
   }
   matchCard () {
-    this.domElement.removeClass('card').addClass('card-match');
+    this.domElement.addClass('card-match');
   }
 
 }

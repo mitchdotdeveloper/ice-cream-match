@@ -1,8 +1,8 @@
 class Game {
   constructor () {
-    this.deck = new Deck().constructDeck();
-    this.currentAttempts = null;
-    this.currentMatches = null;
+    this.deck = new Deck();
+    this.currentAttempts = 0;
+    this.currentMatches = 0;
     this.totalMatches = 6;
     this.currentLevel = 0;
     this.levelAttemptProgression = [11, 8];
@@ -16,6 +16,12 @@ class Game {
           '<br>Accuracy: ' + this.accuracy;
       }
     };
+    this.eventHandlers = this.eventHandlers.bind(this);
+    this.handleStartClick = this.handleStartClick.bind(this);
+    this.restart = this.restart.bind(this);
+
+    this.eventHandlers();
+    this.deck.constructDeck();
   }
 
   showStartScreen () {
@@ -57,6 +63,16 @@ class Game {
         $('body').removeClass('overflow-y');
       }, 750);
     }, 750);
+  }
+
+  eventHandlers () {
+    $('.start').on('click', this.handleStartClick);
+    $('.modal button').on('click', this.restart);
+  }
+
+  handleStartClick () {
+    $('.stats').find('.attempts').text('Attempts: ' + this.currentAttempts);
+    this.hideStartScreen();
   }
 
   restart() {

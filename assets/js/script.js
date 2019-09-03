@@ -40,6 +40,8 @@ function initializeApp () {
 
   var game = new Game();
   game.showStartScreen();
+  // $('.start').on('click', game.handleStartClick);
+
 }
 
 // function startScreen () {
