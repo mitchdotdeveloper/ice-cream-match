@@ -41,6 +41,7 @@ class Game {
   }
   hideStartScreen () {
     $('body').addClass('overflow-y');
+    $('.circle:nth-child(1)').addClass('circle-fill');
     $('.title, .stats').removeClass('home');
     $('.stats').removeClass('flex-center');
     $('.start').addClass('hidden');
