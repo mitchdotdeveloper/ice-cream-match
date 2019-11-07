@@ -47,16 +47,18 @@ class Deck {
   }
 
   checkMatch () {
+    var didMatch = false;
     if (this.cardsClicked[0].getCardFace() === this.cardsClicked[1].getCardFace()) {
       this.cardsClicked[0].matchCard();
       this.cardsClicked[1].matchCard();
+      didMatch = true;
     } else {
       this.cardsClicked[0].hideCard();
       this.cardsClicked[1].hideCard();
     }
 
     this.cardsClicked = [];
-    this.gameHandler(this);
+    this.gameHandler(didMatch);
   }
 
   cardClickHandler ( card ) {
