@@ -1,4 +1,5 @@
 body {
+  width: 100vw;
   margin: 0;
   background-color: rgb(115, 70, 61);
   display: flex;
@@ -26,7 +27,9 @@ body {
 }
 
 .stats {
+  font-family: 'Bangers', cursive;
   font-size: 4vmin;
+  letter-spacing: 2px;
   background-color: rgb(248, 220, 146);
 }
 
@@ -96,20 +99,21 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 80vh;
-  width: 100vw;
+  min-width: 95vw;
+  max-width: 95vw;
+  width: 95vw;
   background-color: rgb(115, 70, 61);
   transition: height .5s;
 }
 
 .card, .card-flipped, .card-match {
   display: flex;
-  flex: 1;
+  flex: 0 0 15vw;
   justify-content: center;
   align-items: baseline;
   height: 300px;
   width: 200px;
   border-radius: 30px;
-  margin: 3px;
   transition: all 0.5s;
   transform-style: preserve-3d;
 }
@@ -223,4 +227,40 @@ body {
 .flex-center {
   justify-content: center;
   align-items: center;
+}
+
+@media (max-height: 750px), (max-width: 1350px) {
+  .card, .card-flipped, .card-match {
+    height: 250px;
+    width: 150px;
+    border-radius: 15px;
+  }
+  .card-back, .card-face {
+    height: 250px;
+    width: 150px;
+  }
+  .card-back img {
+    width: 150px;
+  }
+  .card-face img {
+    width: 100px;
+  }
+}
+
+@media (max-height: 635px), (max-width: 1035px) {
+  .card, .card-flipped, .card-match {
+    height: 200px;
+    width: 100px;
+    border-radius: 15px;
+  }
+  .card-back, .card-face {
+    height: 200px;
+    width: 100px;
+  }
+  .card-back img {
+    width: 100px;
+  }
+  .card-face img {
+    width: 75px;
+  }
 }
