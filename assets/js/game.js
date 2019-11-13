@@ -119,17 +119,17 @@ class Game {
           ++this.currentLevel;
           this.showModal("Sweet! On to level " + (this.currentLevel + 1) + "!!!");
         }
-      }
-
-      if (this.currentLevel) {
-        if (this.currentAttempts === this.levelAttemptProgression[this.currentLevel-1]) {
-          this.needsRestart = true;
-          this.showStats("Bummer! You lost!!!");
+      } else {
+        if (this.currentLevel) {
+          if (this.currentAttempts === this.levelAttemptProgression[this.currentLevel-1]) {
+            this.needsRestart = true;
+            this.showStats("Bummer! You lost!!!");
+          }
         }
       }
-
     } else {
-      if (this.currentAttempts === this.levelAttemptProgression[this.currentLevel-1]) {
+      if (this.currentAttempts === this.levelAttemptProgression[this.currentLevel-1] &&
+          this.currentLevel) {
         this.needsRestart = true;
         this.showStats("Bummer! You lost!!!");
       }
