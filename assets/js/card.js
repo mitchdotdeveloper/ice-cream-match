@@ -46,10 +46,20 @@ class Card {
   }
 
   revealCard () {
-    this.domElement.addClass('card-flip flip');
+    this.domElement.addClass('card-flip');
+    if ( $(window).height() <= 450 || $(window).width() <= 450 ) {
+      this.domElement.find('.card-back').addClass('flip');
+    } else {
+      this.domElement.addClass('flip');
+    }
   }
   hideCard () {
-    this.domElement.removeClass('card-flip flip');
+    this.domElement.removeClass('card-flip');
+    if ($(window).height() <= 450 || $(window).width() <= 450) {
+      this.domElement.find('.card-back').removeClass('flip');
+    } else {
+      this.domElement.removeClass('flip');
+    }
   }
   matchCard () {
     this.domElement.addClass('card-match');
